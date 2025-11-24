@@ -1,139 +1,565 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>HORMONAS - La Cítrica Teatro</title>
-  <meta name="description" content="HORMONAS — obra de La Cítrica Teatro. Teatro y danza que recorre los ciclos de la mujer." />
-  <meta name="theme-color" content="#e8490f" />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HORMONAS - La Cítrica Teatro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #e8490f 0%, #f39c12 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            transform: skewY(-2deg);
+        }
+        
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.3rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+        
+        nav {
+            background: #333;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #f39c12;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .galeria-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            background: #f0f0f0;
+            aspect-ratio: 4/3;
+        }
+        
+        .galeria-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .galeria-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e8490f 0%, #f39c12 100%);
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: #e8490f;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 0.5rem;
+        }
+        
+        .sinopsis {
+            background: #fff7f0;
+            padding: 2rem;
+            border-left: 5px solid #e8490f;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            border-radius: 5px;
+        }
+        
+        .equipo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .actriz {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .actriz:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .actriz h3 {
+            color: #e8490f;
+            font-size: 1.3rem;
+            margin-top: 1rem;
+        }
+        
+        .resena {
+            background: white;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #f39c12;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-style: italic;
+            border-radius: 5px;
+        }
+        
+        .resena-autor {
+            text-align: right;
+            font-weight: bold;
+            color: #e8490f;
+            margin-top: 1rem;
+            font-style: normal;
+        }
+        
+        .prensa {
+            background: #f0f0f0;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .prensa p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .prensa-autor {
+            font-weight: bold;
+            color: #e8490f;
+            margin-top: 1rem;
+        }
+        
+        .conversatorio {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .conversatorio h3 {
+            color: #f39c12;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .funciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .funcion {
+            background: #e8490f;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+        
+        .funcion:hover {
+            background: #f39c12;
+        }
+        
+        .funcion h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contacto {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 10px;
+        }
+        
+        .contacto h2 {
+            color: #f39c12;
+            border-bottom-color: #f39c12;
+        }
+        
+        .contacto-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .contacto a {
+            color: #f39c12;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contacto a:hover {
+            color: #fff;
+        }
+        
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .contacto-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>HORMONAS</h1>
-    <p>La Cítrica Teatro</p>
-  </header>
-
-  <nav>
-    <ul>
-      <li><a href="#sinopsis">La Obra</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#equipo">Equipo</a></li>
-      <li><a href="#resenas">Reseñas</a></li>
-      <li><a href="#funciones">Funciones</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
-
-  <div class="container">
-    <section id="sinopsis">
-      <h2>La Obra</h2>
-      <div class="sinopsis">
-        <p><strong>HORMONAS</strong> recorre el ciclo de vida de una mujer, de las mujeres. Desde que nacemos hasta que morimos.</p>
-        <p>Éste es un recorrido en clave cítrica: <strong>teatro, danza, humor y cruda realidad</strong> se mezclan para viajar hacia lo esencial.</p>
-        <p>A lo largo de este viaje transitaremos por diferentes experiencias vitales atravesadas por las normas, creencias y violencias tanto estructurales como las de género.</p>
-        <p>Este viaje tiene muchas paradas: estereotipos de género en edades tempranas, bullying escolar, violencia obstétrica, violencia de género mortal, síntomas y tabúes en la menopausia, la soledad de las mujeres en la vejez...</p>
-        <p><strong>El medio de transporte de este viaje es el teatro y la danza, el cuerpo expresivo, el movimiento poético y la más pura interpretación.</strong></p>
-      </div>
-
-      <div class="conversatorio">
-        <h3>Conversatorio</h3>
-        <p>Al terminar el espectáculo se propone (libremente al público que desee quedarse) un conversatorio con las actrices/guionistas/directoras de HORMONAS, guiado con herramientas del teatro de las oprimidas.</p>
-      </div>
-    </section>
-
-    <section id="galeria">
-      <h2>Galería</h2>
-
-      <h3 style="color:#e8490f;margin:2rem 0 1rem 0">Vídeo</h3>
-      <div class="video-container">
-        <!-- <iframe
-  src="https://www.youtube-nocookie.com/embed/ID_DEL_VIDEO?rel=0&autoplay=1&mute=1"
-  title="Vídeo de HORMONAS"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-  loading="lazy"
-></iframe>-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        -->
-        <div class="video-placeholder">📹<br><span style="font-size:1rem;margin-top:1rem">Inserta aquí el iframe de tu vídeo</span></div>
-      </div>
-
-      <h3 style="color:#e8490f;margin:2rem 0 1rem 0">Fotografías</h3>
-      <div class="galeria-grid">
-        <div class="galeria-item"><!-- <img src="images/foto1.jpg" alt="Hormonas - Escena 1"> --><div class="galeria-placeholder">📷</div></div>
-        <div class="galeria-item"><!-- <img src="images/foto2.jpg" alt="Hormonas - Escena 2"> --><div class="galeria-placeholder">📷</div></div>
-        <div class="galeria-item"><!-- <img src="images/foto3.jpg" alt="Hormonas - Escena 3"> --><div class="galeria-placeholder">📷</div></div>
-        <div class="galeria-item"><!-- <img src="images/foto4.jpg" alt="Hormonas - Escena 4"> --><div class="galeria-placeholder">📷</div></div>
-        <div class="galeria-item"><!-- <img src="images/foto5.jpg" alt="Hormonas - Escena 5"> --><div class="galeria-placeholder">📷</div></div>
-        <div class="galeria-item"><!-- <img src="images/foto6.jpg" alt="Hormonas - Escena 6"> --><div class="galeria-placeholder">📷</div></div>
-      </div>
-    </section>
-
-    <section id="equipo">
-      <h2>Equipo Artístico</h2>
-      <p style="font-size:1.1rem;margin-bottom:2rem">La Cítrica Teatro nace de la unión de cuatro mujeres artistas que viven en el medio rural. Tienen formación en Arte Dramático, danza, música, yoga y expresión corporal.</p>
-      <div class="equipo">
-        <div class="actriz"><h3>Chiara Sanzillo</h3><p>Actriz</p></div>
-        <div class="actriz"><h3>Sara Zironi</h3><p>Actriz</p></div>
-        <div class="actriz"><h3>Beatriz Arias García</h3><p>Actriz</p></div>
-        <div class="actriz"><h3>Alicia Conde Fernández</h3><p>Actriz</p></div>
-      </div>
-      <p style="margin-top:2rem;font-style:italic"><strong>Dirección y creación:</strong> La Cítrica Teatro<br><strong>Dramaturgia, Escenografía, Vestuario y Espacio Sonoro:</strong> La Cítrica Teatro</p>
-    </section>
-
-    <section id="resenas">
-      <h2>Reseñas</h2>
-      <div class="prensa">
-        <h3 style="color:#e8490f;margin-bottom:1rem">Prensa</h3>
-        <p>"En su primer montaje, 'Hormonas' usó el bisturí para sajar las heridas sociales..."</p>
-        <p class="prensa-autor">— Alexia Salas, Diario "La Verdad"</p>
-      </div>
-
-      <h3 style="color:#e8490f;margin-top:2rem;margin-bottom:1rem">Público</h3>
-
-      <div class="resena"><p>"Anoche pude ver vuestra obra y me pareció simplemente genial..."</p><p class="resena-autor">San Pedro del Pinatar, Murcia</p></div>
-      <div class="resena"><p>"HORMONAS, una pieza teatral que impacta..."</p><p class="resena-autor">San Pedro del Pinatar, Murcia</p></div>
-      <div class="resena"><p>"Agradecida de poder disfrutar de una obra de teatro..."</p><p class="resena-autor">Padul, Granada</p></div>
-      <div class="resena"><p>"Teatro contemporáneo. Esto es teatro contemporáneo de verdad."</p></div>
-      <div class="resena"><p>"El final me dejó rumiando sobre mi adultez mayor..."</p><p class="resena-autor">Cynthia, Granada</p></div>
-      <div class="resena"><p>"Me pareció muy interesante la puesta en escena..."</p><p class="resena-autor">Rosa, Granada</p></div>
-      <div class="resena"><p>"Una de las mejores obras de teatro..."</p><p class="resena-autor">Paki Ruiz, Salobreña</p></div>
-    </section>
-
-    <section id="funciones">
-      <h2>Funciones</h2>
-
-      <h3 style="color:#e8490f;margin:2rem 0 1rem 0">2024</h3>
-      <div class="funciones">
-        <div class="funcion"><h4>Níguelas</h4><p>Abril 2024</p></div>
-        <div class="funcion"><h4>Murcia</h4><p>Noviembre 2024</p></div>
-        <div class="funcion"><h4>Padul</h4><p>Noviembre 2024</p></div>
-      </div>
-
-      <h3 style="color:#e8490f;margin:2rem 0 1rem 0">2025</h3>
-      <div class="funciones">
-        <div class="funcion"><h4>Festival Enclave Mujer</h4><p>Febrero 2025</p></div>
-        <div class="funcion"><h4>Granada</h4><p>Febrero 2025</p></div>
-        <div class="funcion"><h4>Salobreña</h4><p>Marzo 2025</p></div>
-        <div class="funcion"><h4>Granada</h4><p>Mayo 2025</p></div>
-      </div>
-    </section>
-  </div>
-
-  <section id="contacto" class="contacto">
-    <h2>Contacto</h2>
-    <div class="contacto-info">
-      <div><p>📧 <a href="mailto:lacitricateatro@gmail.com">lacitricateatro@gmail.com</a></p></div>
-      <div><p>📱 <a href="tel:618933927">618 933 927</a> (Beatriz)</p></div>
-      <div><p>📱 <a href="tel:657366643">657 366 643</a> (Alicia)</p></div>
-      <div><p>📷 <a href="https://instagram.com/lacitricateatro" target="_blank" rel="noopener noreferrer">@lacitricateatro</a></p></div>
+    <header>
+        <h1>HORMONAS</h1>
+        <p>La Cítrica Teatro</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#sinopsis">La Obra</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#equipo">Equipo</a></li>
+            <li><a href="#resenas">Reseñas</a></li>
+            <li><a href="#funciones">Funciones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="sinopsis">
+            <h2>La Obra</h2>
+            <div class="sinopsis">
+                <p><strong>HORMONAS</strong> recorre el ciclo de vida de una mujer, de las mujeres. Desde que nacemos hasta que morimos.</p>
+                
+                <p>Éste es un recorrido en clave cítrica: <strong>teatro, danza, humor y cruda realidad</strong> se mezclan para viajar hacia lo esencial.</p>
+                
+                <p>A lo largo de este viaje transitaremos por diferentes experiencias vitales atravesadas por las normas, creencias y violencias tanto estructurales como las de género.</p>
+                
+                <p>Este viaje tiene muchas paradas: estereotipos de género en edades tempranas, bullying escolar, violencia obstétrica, violencia de género mortal, síntomas y tabúes en la menopausia, la soledad de las mujeres en la vejez...</p>
+                
+                <p><strong>El medio de transporte de este viaje es el teatro y la danza, el cuerpo expresivo, el movimiento poético y la más pura interpretación.</strong></p>
+            </div>
+            
+            <div class="conversatorio">
+                <h3>Conversatorio</h3>
+                <p>Una vez terminado el espectáculo se propone (libremente al público que desee quedarse) un conversatorio con las actrices/guionistas/directoras de HORMONAS.</p>
+                <p>Éste es un espacio para expresar, compartir y reflexionar en colectividad. El conversatorio es guiado con algunas herramientas del teatro de las oprimidas.</p>
+            </div>
+        </section>
+        
+        <section id="galeria">
+            <h2>Galería</h2>
+            
+            <h3 style="color: #e8490f; margin: 2rem 0 1rem 0;">Vídeo</h3>
+            <div class="video-container">
+                <!-- Sustituye el comentario por el código embed de YouTube/Vimeo -->
+                <!-- Ejemplo YouTube: <iframe src="https://www.youtube.com/embed/TU_CODIGO_VIDEO" frameborder="0" allowfullscreen></iframe> -->
+                <div class="video-placeholder">
+                    📹<br>
+                    <span style="font-size: 1rem; margin-top: 1rem;"><iframe width="560" height="315" src="https://www.youtube.com/embed/hpq6Yeb-Xhw?si=T4MgEtP_0q7_G50r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></span>
+                </div>
+            </div>
+            
+            <h3 style="color: #e8490f; margin: 2rem 0 1rem 0;">Fotografías</h3>
+            <div class="galeria-grid">
+                <div class="galeria-item">
+                    <!-- <img src="escena1.jpg" alt="Hormonas - Escena 1"> -->
+                    <div class="galeria-placeholder">📷</div>
+                </div>
+                <div class="galeria-item">
+                    <!-- <img src="escena2.jpg" alt="Hormonas - Escena 2"> -->
+                    <div class="galeria-placeholder">📷</div>
+                </div>
+                <div class="galeria-item">
+                    <!-- <img src="escena3.jpg" alt="Hormonas - Escena 3"> -->
+                    <div class="galeria-placeholder">📷</div>
+                </div>
+                <div class="galeria-item">
+                    <!-- <img src="escena4.jpg" alt="Hormonas - Escena 4"> -->
+                    <div class="galeria-placeholder">📷</div>
+                </div>
+                <div class="galeria-item">
+                    <!-- <img src="ruta-a-tu-foto-5.jpg" alt="Hormonas - Escena 5"> -->
+                    <div class="galeria-placeholder">📷</div>
+                </div>
+                <div class="galeria-item">
+                    <!-- <img src="ruta-a-tu-foto-6.jpg" alt="Hormonas - Escena 6"> -->
+                    <div class="galeria-placeholder">📷</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="equipo">
+            <h2>Equipo Artístico</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">La Cítrica Teatro nace de la necesidad de unión de cuatro mujeres artistas que viven en el medio rural y desean dejar un mundo más amable a sus hij@s y a la comunidad en general. Las integrantes tienen formación y una larga trayectoria profesional en Arte Dramático, danza, música, yoga y expresión corporal.</p>
+            
+            <div class="equipo">
+                <div class="actriz">
+                    <h3>Chiara Sanzillo</h3>
+                    <p>Actriz</p>
+                </div>
+                <div class="actriz">
+                    <h3>Sara Zironi</h3>
+                    <p>Actriz</p>
+                </div>
+                <div class="actriz">
+                    <h3>Beatriz Arias García</h3>
+                    <p>Actriz</p>
+                </div>
+                <div class="actriz">
+                    <h3>Alicia Conde Fernández</h3>
+                    <p>Actriz</p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 2rem; font-style: italic;"><strong>Dirección y creación:</strong> La Cítrica Teatro<br>
+            <strong>Dramaturgia, Escenografía, Vestuario y Espacio Sonoro:</strong> La Cítrica Teatro</p>
+        </section>
+        
+        <section id="resenas">
+            <h2>Reseñas</h2>
+            
+            <div class="prensa">
+                <h3 style="color: #e8490f; margin-bottom: 1rem;">Prensa</h3>
+                <p>"En su primer montaje, 'Hormonas' usó el bisturí para sajar las heridas sociales infligidas a la mitad de la población desde el nacimiento hasta la vejez. En esta especie de terapia teatral, destripan el daño silencioso pero incesante que la segregación de géneros hace en la vida de las mujeres."</p>
+                <p style="margin-top: 1rem;">"Cuatro actrices con cuatro sillas y dos focos son todo el equipaje de 'Hormonas'. Ellas reúnen capacidades en danza, música, expresión corporal y arte dramático suficientes para visibilizar el drama oculto en los roles sociales."</p>
+                <p class="prensa-autor">— Alexia Salas, Diario "La Verdad"</p>
+            </div>
+            
+            <h3 style="color: #e8490f; margin-top: 2rem; margin-bottom: 1rem;">Público</h3>
+            
+            <div class="resena">
+                <p>"Anoche pude ver vuestra obra y me pareció simplemente genial. Cómo en una hora pasasteis por todas las etapas de la mujer de una forma tan concisa y elegante. La idea es maravillosa y real como la vida misma."</p>
+                <p class="resena-autor">San Pedro del Pinatar, Murcia</p>
+            </div>
+            
+            <div class="resena">
+                <p>"HORMONAS, una pieza teatral que impacta, confronta e interpela, un viaje por nuestros ciclos reproductivos. Brutales."</p>
+                <p class="resena-autor">San Pedro del Pinatar, Murcia</p>
+            </div>
+            
+            <div class="resena">
+                <p>"Agradecida de poder disfrutar de una obra de teatro de esta categoría. Maravillosa interpretación, actrices brutales y puesta en escena cuidada y perfecta. Son absolutamente necesarias."</p>
+                <p class="resena-autor">Padul, Granada</p>
+            </div>
+            
+            <div class="resena">
+                <p>"Teatro contemporáneo. Esto es teatro contemporáneo de verdad."</p>
+            </div>
+            
+            <div class="resena">
+                <p>"El final me dejó rumiando sobre mi adultez mayor y cómo quiero vivirla. Gracias por el teatro, gracias por conmover corazones."</p>
+                <p class="resena-autor">Cynthia, Granada</p>
+            </div>
+            
+            <div class="resena">
+                <p>"Me pareció muy interesante la puesta en escena, la gran variedad de escenas que creáis con tan pocos elementos. Está tan bien construida de principio a fin, mezclando momentos más cómicos con situaciones de más gravedad."</p>
+                <p class="resena-autor">Rosa, Granada</p>
+            </div>
+            
+            <div class="resena">
+                <p>"Una de las mejores obras de teatro de los últimos tiempos que se han ofrecido dentro de las actividades del 8M."</p>
+                <p class="resena-autor">Paki Ruiz, Salobreña</p>
+            </div>
+        </section>
+        
+        <section id="funciones">
+            <h2>Funciones</h2>
+            
+            <h3 style="color: #e8490f; margin: 2rem 0 1rem 0;">2024</h3>
+            <div class="funciones">
+                <div class="funcion">
+                    <h4>Níguelas</h4>
+                    <p>Abril 2024</p>
+                </div>
+                <div class="funcion">
+                    <h4>Murcia</h4>
+                    <p>Noviembre 2024</p>
+                </div>
+                <div class="funcion">
+                    <h4>Padul</h4>
+                    <p>Noviembre 2024</p>
+                </div>
+            </div>
+            
+            <h3 style="color: #e8490f; margin: 2rem 0 1rem 0;">2025</h3>
+            <div class="funciones">
+                <div class="funcion">
+                    <h4>Festival Enclave Mujer</h4>
+                    <p>Febrero 2025</p>
+                </div>
+                <div class="funcion">
+                    <h4>Granada</h4>
+                    <p>Febrero 2025</p>
+                </div>
+                <div class="funcion">
+                    <h4>Salobreña</h4>
+                    <p>Marzo 2025</p>
+                </div>
+                <div class="funcion">
+                    <h4>Granada</h4>
+                    <p>Mayo 2025</p>
+                </div>
+            </div>
+        </section>
     </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2024-2025 La Cítrica Teatro. Todos los derechos reservados.</p>
-    <p style="margin-top:.5rem;font-style:italic">Fotografía: Brais Pernas</p>
-  </footer>
+    
+    <section id="contacto" class="contacto">
+        <h2>Contacto</h2>
+        <div class="contacto-info">
+            <div>
+                <p>📧 <a href="mailto:lacitricateatro@gmail.com">lacitricateatro@gmail.com</a></p>
+            </div>
+            <div>
+                <p>📱 <a href="tel:618933927">618 933 927</a> (Beatriz)</p>
+            </div>
+            <div>
+                <p>📱 <a href="tel:657366643">657 366 643</a> (Alicia)</p>
+            </div>
+            <div>
+                <p>📷 <a href="https://instagram.com/lacitricateatro" target="_blank">@lacitricateatro</a></p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024-2025 La Cítrica Teatro. Todos los derechos reservados.</p>
+        <p style="margin-top: 0.5rem; font-style: italic;">Fotografía: Brais Pernas</p>
+    </footer>
 </body>
 </html>
