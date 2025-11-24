@@ -1,3 +1,5 @@
 [build]
-  publish = "docs"
+  # Publicar desde la raíz del repo
+  publish = "."
+  # No hay comando de build para HTML/CSS puro
   command = ""
